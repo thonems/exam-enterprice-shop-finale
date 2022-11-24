@@ -1,6 +1,7 @@
 package no.enterprice.exam.orderservice.unittest
 
 
+import no.enterprice.exam.orderservice.model.exceptions.OrderNotFoundException
 import org.codehaus.jettison.json.JSONObject
 import org.hamcrest.Matchers.*
 import org.junit.jupiter.api.MethodOrderer
@@ -29,14 +30,14 @@ class ApiTest(@Autowired private val mockMvc: MockMvc) {
 
     @Test
     @Order(1)
-    fun shouldCreateCat() {
-        val catPayload = JSONObject()
+    fun shouldCreateOrder() {
+        val orderPayload = JSONObject()
             .put("shipped", "false")
             .put("paid", "false")
 
         mockMvc.post(newUrl) {
             contentType = MediaType.APPLICATION_JSON
-            content = catPayload
+            content = orderPayload
         }
             .andExpect { status { 200 } }
             .andReturn()
@@ -53,13 +54,18 @@ class ApiTest(@Autowired private val mockMvc: MockMvc) {
             .andExpect { content { contentType(MediaType.APPLICATION_JSON) } }
             .andExpect { content { "{\"paid\":false}" }  }
             .andExpect { content { "{\"shipped\":false}" } }
+            .andExpect { content { "{\"id\":2}" } }
             .andReturn()
-            //.andExpect { jsonPath("$.shipped", contains("false")) }
-            //.andExpect { jsonPath("$.shipped", contains("false")) }
-            //.andExpect { jsonPath("$.shipped", false)) }
-
     }
 
+    @Test
+    @Order(3)
+    fun shouldReturnOrderNotFound(){
+        mockMvc.get("$getUrl/66") {
+            contentType = MediaType.APPLICATION_JSON
+        }
 
+            .andExpect { status { 404 } }
+    }
 }
 
