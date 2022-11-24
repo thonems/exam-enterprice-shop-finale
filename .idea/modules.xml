@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/discovery-service/discovery-service.iml" filepath="$PROJECT_DIR$/discovery-service/discovery-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/discovery-service/exam (1).iml" filepath="$PROJECT_DIR$/discovery-service/exam (1).iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway-service/exam (2).iml" filepath="$PROJECT_DIR$/gateway-service/exam (2).iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/exam-enterprice-2.iml" filepath="$PROJECT_DIR$/.idea/exam-enterprice-2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway-service/gateway-service.iml" filepath="$PROJECT_DIR$/gateway-service/gateway-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/order-service/order-service.iml" filepath="$PROJECT_DIR$/order-service/order-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/payment-service/payment-service.iml" filepath="$PROJECT_DIR$/payment-service/payment-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shipping-service/shipping-service.iml" filepath="$PROJECT_DIR$/shipping-service/shipping-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shipping-service/shippingservice.iml" filepath="$PROJECT_DIR$/shipping-service/shippingservice.iml" />
+    </modules>
+  </component>
+</project>

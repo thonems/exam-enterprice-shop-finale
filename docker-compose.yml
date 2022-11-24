@@ -1,0 +1,85 @@
+version: '3.1'
+services:
+  db:
+    container_name: 'shop-db'
+    image: postgres:alpine
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_DB=shopdb
+      - POSTGRES_USER=shopuser
+      - POSTGRES_PASSWORD=pirate
+  shippingservice:
+    container_name: 'shippingservice'
+    image: shippingservice:1
+    ports:
+      - '8097:8097'
+    depends_on:
+      - db
+    profiles: [ 'dev' ]
+    environment:
+      POSTGRES_JDBC_USER: shopuser
+      POSTGRES_JDBC_PASS: pirate
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://db:5432/shopdb"
+      SPRING_PROFILES_ACTIVE: local
+  orderservice:
+    container_name: 'orderservice'
+    image: orderservice:1
+    ports:
+      - '8099:8099'
+    depends_on:
+      - db
+    profiles: [ 'dev' ]
+    environment:
+      POSTGRES_JDBC_USER: shopuser
+      POSTGRES_JDBC_PASS: pirate
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://db:5432/shopdb"
+      SPRING_PROFILES_ACTIVE: local
+  paymentservice:
+    container_name: 'paymentservice'
+    image: paymentservice:1
+    ports:
+      - '8098:8098'
+    depends_on:
+      - db
+    profiles: [ 'dev' ]
+    environment:
+      POSTGRES_JDBC_USER: shopuser
+      POSTGRES_JDBC_PASS: pirate
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://db:5432/shopdb"
+      SPRING_PROFILES_ACTIVE: local
+  discoveryservice:
+    container_name: 'discoveryservice'
+    image: discoveryservice:1
+    ports:
+      - '8761:8761'
+    depends_on:
+      - db
+    profiles: [ 'dev' ]
+    environment:
+      POSTGRES_JDBC_USER: shopuser
+      POSTGRES_JDBC_PASS: pirate
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://db:5432/shopdb"
+      SPRING_PROFILES_ACTIVE: local
+  gatewayservice:
+    container_name: 'gatewayservice'
+    image: gatewayservice:1
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+    profiles: [ 'dev' ]
+    environment:
+      POSTGRES_JDBC_USER: shopuser
+      POSTGRES_JDBC_PASS: pirate
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://db:5432/shopdb"
+      SPRING_PROFILES_ACTIVE: local
+  rabbitmq:
+    container_name: 'rabbit-mq'
+    image: rabbitmq:3.11.3-management-alpine
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+    volumes:
+      - ./rabbitmq-config/definitions.json:/etc/rabbitmq/definitions.json:ro
+      - ./rabbitmq-config/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro

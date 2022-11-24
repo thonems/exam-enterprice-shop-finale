@@ -1,0 +1,19 @@
+server:
+  port: 8098
+spring:
+  jpa:
+    database: postgresql
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  datasource:
+    url: jdbc:postgresql://localhost:5432/shopdb
+    username: shopuser
+    password: pirate
+  rabbitmq:
+    host: localhost
+  application:
+    name: payment-service
