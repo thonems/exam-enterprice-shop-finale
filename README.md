@@ -16,14 +16,13 @@ Postman link:
 - [x] Once an order is created communicate with payment with rabbitmq
 - [x] once an order is paid for it needs to update order in orderservice that it is paid for. (rabbitmq)
 - [x] all services use postgres and multiple databases created with init.sql
-- [ ] Integration test using MockMVC and TestContainers, wiremock where needed
+- [x] Integration test using MockMVC and TestContainers, wiremock where needed
 - [x] Docker compose
-- [ ] Docker profiles for all the services "docker compose with -p"
+- [x] Docker profiles for all the services "docker compose with -p"
 - [x] Order service and Shipping are communicating via RabbitMQ 
-- [ ] Test for RabbitMQ
+- [x] Test for RabbitMQ
 - [x] gateway porting all traffic to 8080
 - [x] Caching on some places
 - [x] Pagination on orders
 - [x] custom exceptions for things like “Order not found”, and “User not found”,  handled globally using @ControllerAdvice.
-- [ ] Circuit breakers.
 - [x] Docker files for all services
